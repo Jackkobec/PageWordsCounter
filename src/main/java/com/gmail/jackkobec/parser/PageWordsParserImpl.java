@@ -18,6 +18,13 @@ public class PageWordsParserImpl implements PageWordsParser {
 
     private static final String SPLIT_DELIMITER = " \t\n\r,.:-;/<>";
 
+    /**
+     * Delete HTML tag words and content of the some tags.
+     * Split words by SPLIT_DELIMITER and add to the list.
+     *
+     * @param string
+     * @return list of the sorted words from the page
+     */
     @Override
     public List<String> splitAndCleanString(String string) {
 
@@ -30,18 +37,14 @@ public class PageWordsParserImpl implements PageWordsParser {
 
         while (stringTokenizer.hasMoreTokens()) {
 
-            System.out.println(stringTokenizer.countTokens());
-
             String currentWord = stringTokenizer.nextToken();
-            System.out.println(currentWord);
+
             if (checkOnlyLetters(currentWord)) {
                 allWords.add(currentWord);
             }
         }
-        System.out.println(allWords);
-        System.out.println(allWords.size());
-        System.out.println(allWords.subList(1, allWords.size()));
 
+        System.out.println("\n Parsed " + allWords.size() + " words.");
         return sortWords(allWords.get(0).equalsIgnoreCase("html")
                 ? allWords.subList(1, allWords.size())
                 : allWords);
@@ -60,7 +63,7 @@ public class PageWordsParserImpl implements PageWordsParser {
         Set<String> uniqueRepeatedWords = new LinkedHashSet<>();//set for save unique repeated words
         int count = 0;
 
-        System.out.println("listOfAllWords: " + listOfAllWords);
+//        System.out.println("listOfAllWords: " + listOfAllWords);
         for (String s : listOfAllWords) {
 
             if (words.add(s)) {
@@ -71,8 +74,8 @@ public class PageWordsParserImpl implements PageWordsParser {
             }
         }
 
-        System.out.println("Count of repeated words = " + (count + uniqueRepeatedWords.size()));
-        System.out.println("uniqueRepeatedWords" + uniqueRepeatedWords);
+        System.out.println("\nCount of repeated words = " + (count + uniqueRepeatedWords.size()));
+        System.out.println("\nUnique repeated words: " + uniqueRepeatedWords);
 
         return countRepeatsForEachWordFromList(listOfAllWords, uniqueRepeatedWords);
     }
