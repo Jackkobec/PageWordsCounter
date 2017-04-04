@@ -9,6 +9,7 @@ import com.gmail.jackkobec.utils.impl.URLutilsImpl;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -34,11 +35,11 @@ public class RunApp {
 
             if (!urLutils.checkUrl(url)) {
                 throw new MalformedURLException("Incorrect URL. Try again.");
-            } else{
+            } else {
                 boolean isHtml = htmLutils.checkIsHtml(url);
                 System.out.println(isHtml);
-                if(isHtml){
-//                    new PageWordsParserImpl().splitString(htmLutils.loadPage(url));
+                if (isHtml) {
+//                    new PageWordsParserImpl().splitAndCleanString(htmLutils.loadPage(url));
                 }
             }
 
@@ -73,8 +74,10 @@ public class RunApp {
 
                     boolean isHtml = htmLutils.checkIsHtml(url);
                     System.out.println(isHtml);
-                    if(isHtml){
-                        new PageWordsParserImpl().splitString(htmLutils.loadPage(url));
+                    if (isHtml) {
+
+                        List<String> parsedCleanedAndSortedWords =  new PageWordsParserImpl().splitAndCleanString(htmLutils.loadPage(url));
+                        new PageWordsParserImpl().countOfTheRepeatedWords(parsedCleanedAndSortedWords);
                     }
 
                     break;
