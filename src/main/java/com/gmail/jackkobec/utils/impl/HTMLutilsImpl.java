@@ -15,14 +15,15 @@ public class HTMLutilsImpl implements HTMLutils {
     public String loadPage(String url) throws IOException {
 
         String stringLine = null;
+        StringBuilder stringBuilder = new StringBuilder();
         BufferedReader bufferedReader = null;
 
 //         bufferedReader = new BufferedReader(
 //                new InputStreamReader(new URL(url).openConnection().getInputStream(), "UTF-8"));
 
-        System.out.println("URL path: " + url);
-        System.out.println("url.toString().substring(0, 4): " + url.substring(0, 4));
-        System.out.println("url.substring(8): " + url.substring(7));
+//        System.out.println("URL path: " + url);
+//        System.out.println("url.toString().substring(0, 4): " + url.substring(0, 4));
+//        System.out.println("url.substring(8): " + url.substring(7));
 
         if (url.substring(0, 4).equalsIgnoreCase("file")) {
             bufferedReader = new BufferedReader(new FileReader(new File(url.substring(7))));
@@ -38,11 +39,10 @@ public class HTMLutilsImpl implements HTMLutils {
             if (stringLine == null)
                 break;
 
-//            System.out.println(stringLine);
-            return stringLine;
+            stringBuilder.append(stringLine);
         }
 
-        return null;
+        return stringBuilder.toString();
     }
 
     @Override

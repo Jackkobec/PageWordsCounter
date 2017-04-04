@@ -1,5 +1,7 @@
 package com.gmail.jackkobec.run;
 
+import com.gmail.jackkobec.parser.PageWordsParser;
+import com.gmail.jackkobec.parser.PageWordsParserImpl;
 import com.gmail.jackkobec.utils.interfaces.HTMLutils;
 import com.gmail.jackkobec.utils.impl.HTMLutilsImpl;
 import com.gmail.jackkobec.utils.interfaces.URLutils;
@@ -33,7 +35,11 @@ public class RunApp {
             if (!urLutils.checkUrl(url)) {
                 throw new MalformedURLException("Incorrect URL. Try again.");
             } else{
-                System.out.println(htmLutils.checkIsHtml(url));
+                boolean isHtml = htmLutils.checkIsHtml(url);
+                System.out.println(isHtml);
+                if(isHtml){
+//                    new PageWordsParserImpl().splitString(htmLutils.loadPage(url));
+                }
             }
 
         } catch (MalformedURLException e) {
@@ -64,7 +70,12 @@ public class RunApp {
 
                     System.out.println("URL CORRECT");
                     System.out.println("REPORT for: " + url);
-                    System.out.println(htmLutils.checkIsHtml(url));
+
+                    boolean isHtml = htmLutils.checkIsHtml(url);
+                    System.out.println(isHtml);
+                    if(isHtml){
+                        new PageWordsParserImpl().splitString(htmLutils.loadPage(url));
+                    }
 
                     break;
                 }
