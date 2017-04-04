@@ -47,8 +47,14 @@ public class PageWordsParserImpl implements PageWordsParser {
                 : allWords);
     }
 
+    /**
+     * Count all uniqie repeated words.
+     *
+     * @param listOfAllWords
+     * @return
+     */
+    @Override
     public Map<String, Integer> countOfTheRepeatedWords(List<String> listOfAllWords) {
-
 
         Set<String> words = new LinkedHashSet<>();//set for add any word and check is it unique
         Set<String> uniqueRepeatedWords = new LinkedHashSet<>();//set for save unique repeated words
@@ -73,12 +79,13 @@ public class PageWordsParserImpl implements PageWordsParser {
 
 
     /**
-     * count repeats for each unique word
+     * Count repeats for each unique word.
      *
      * @param listOfAllWords
      * @param uniqueRepeatedWords
      * @return
      */
+    @Override
     public Map<String, Integer> countRepeatsForEachWordFromList(List<String> listOfAllWords, Set<String> uniqueRepeatedWords) {
 
         Map<String, Integer> wordsWithCountMap = new LinkedHashMap<>();
@@ -89,7 +96,7 @@ public class PageWordsParserImpl implements PageWordsParser {
         uniqueRepeatedWords.forEach(k -> wordsWithCountMap.put(k, (int) listOfAllWords.stream()
                 .filter(el -> el.equals(k)).count()));
 
-        System.out.println("Statistics for every unique repeated word:");
+        System.out.println("\nStatistics for every unique repeated word:");
         wordsWithCountMap.forEach((k, v) -> System.out.println(k + " - " + v + " repeats;"));
 
         return wordsWithCountMap;
@@ -119,7 +126,7 @@ public class PageWordsParserImpl implements PageWordsParser {
     }
 
     /**
-     * Replaces all HTML tags with spaces
+     * Replaces all HTML tags with spaces.
      *
      * @param string
      * @return
@@ -130,7 +137,7 @@ public class PageWordsParserImpl implements PageWordsParser {
     }
 
     /**
-     * Replaces some HTML tags with spaces
+     * Replaces some HTML tags with spaces.
      *
      * @param string
      * @return

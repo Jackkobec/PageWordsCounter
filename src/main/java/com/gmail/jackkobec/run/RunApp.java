@@ -1,11 +1,10 @@
 package com.gmail.jackkobec.run;
 
-import com.gmail.jackkobec.parser.PageWordsParser;
 import com.gmail.jackkobec.parser.PageWordsParserImpl;
-import com.gmail.jackkobec.utils.interfaces.HTMLutils;
 import com.gmail.jackkobec.utils.impl.HTMLutilsImpl;
-import com.gmail.jackkobec.utils.interfaces.URLutils;
 import com.gmail.jackkobec.utils.impl.URLutilsImpl;
+import com.gmail.jackkobec.utils.interfaces.HTMLutils;
+import com.gmail.jackkobec.utils.interfaces.URLutils;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -32,14 +31,21 @@ public class RunApp {
 //            file://C:/Users/Jack/IdeaProjects/PageWordsCounter/src/main/resources/TestPage.html
 //            file://C:/Users/Jack/IdeaProjects/PageWordsCounter/src/main/resources/FailPage.txt
             String url = "test";
-
+            //check URL entered as CMD parameter
             if (!urLutils.checkUrl(url)) {
                 throw new MalformedURLException("Incorrect URL. Try again.");
+
             } else {
+
+                System.out.println("URL CORRECT");
+                System.out.println("REPORT for: " + url);
+
                 boolean isHtml = htmLutils.checkIsHtml(url);
                 System.out.println(isHtml);
+
                 if (isHtml) {
-//                    new PageWordsParserImpl().splitAndCleanString(htmLutils.loadPage(url));
+                    List<String> parsedCleanedAndSortedWords = new PageWordsParserImpl().splitAndCleanString(htmLutils.loadPage(url));
+                    new PageWordsParserImpl().countOfTheRepeatedWords(parsedCleanedAndSortedWords);
                 }
             }
 
@@ -74,9 +80,9 @@ public class RunApp {
 
                     boolean isHtml = htmLutils.checkIsHtml(url);
                     System.out.println(isHtml);
-                    if (isHtml) {
 
-                        List<String> parsedCleanedAndSortedWords =  new PageWordsParserImpl().splitAndCleanString(htmLutils.loadPage(url));
+                    if (isHtml) {
+                        List<String> parsedCleanedAndSortedWords = new PageWordsParserImpl().splitAndCleanString(htmLutils.loadPage(url));
                         new PageWordsParserImpl().countOfTheRepeatedWords(parsedCleanedAndSortedWords);
                     }
 

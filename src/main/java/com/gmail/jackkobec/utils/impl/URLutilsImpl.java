@@ -12,6 +12,12 @@ public class URLutilsImpl implements URLutils {
     //URL pattern
     public static final String HTTP_PATTERN = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
+    /**
+     * Check entered URL
+     *
+     * @param url
+     * @return
+     */
     @Override
     public boolean checkUrl(String url) {
 

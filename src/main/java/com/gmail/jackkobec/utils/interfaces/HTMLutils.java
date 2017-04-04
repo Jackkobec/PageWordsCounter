@@ -1,7 +1,6 @@
 package com.gmail.jackkobec.utils.interfaces;
 
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by Jack on 04.04.2017.
