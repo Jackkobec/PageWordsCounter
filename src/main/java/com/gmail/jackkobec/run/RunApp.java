@@ -19,9 +19,8 @@ public class RunApp {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println("****WELCOME TO THE PAGE WORDS COUNTER APP****");
-        System.out.println("Please use URL without spaces and wrong characters. Example: \n ");
-        System.out.print("Enter you URL: ");
+        System.out.println("****WELCOME TO THE PAGE WORDS COUNTER APP****\n");
+        descriptor();
 
         try {
 //            String url = args[0];
@@ -44,12 +43,18 @@ public class RunApp {
         }
     }
 
+    private static void descriptor() {
+        System.out.println("Please use URL without spaces and wrong characters. \nExample: https://www.google.com.ua" +
+                "\nOr absolute path to FILE: \nExample: file://C:/Users/Jack/TestPage.html\n");
+        System.out.print("Enter you URL: ");
+    }
+
     private static void readUrlFromConsole() throws IOException {
 
         while (true) {
             try {
                 Scanner sc = new Scanner(System.in);
-                System.out.print("Enter you URL: ");
+                descriptor();
                 String url = sc.nextLine();
 
                 if (!urLutils.checkUrl(url)) {
