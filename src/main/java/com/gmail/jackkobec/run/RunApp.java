@@ -17,11 +17,11 @@ import java.util.Scanner;
  */
 public class RunApp {
 
-    private static final URLutils urLutils = new URLutilsImpl();
-    private static final HTMLutils htmLutils = new HTMLutilsImpl();
-    private static final PageWordsParser pageWordsParser = new PageWordsParserImpl();
-
     public static void main(String[] args) throws IOException {
+
+        URLutils urLutils = new URLutilsImpl();
+        HTMLutils htmLutils = new HTMLutilsImpl();
+        PageWordsParser pageWordsParser = new PageWordsParserImpl();
 
         System.out.println("****WELCOME TO THE PAGE WORDS COUNTER APP****");
         descriptor();
@@ -38,17 +38,25 @@ public class RunApp {
                 throw new MalformedURLException("Incorrect URL. Try again.");
 
             } else {
-                processCorrectUrl(url);
+                processCorrectUrl(url, htmLutils, pageWordsParser);
             }
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
 
-            readUrlFromConsole();
+            readUrlFromConsole(urLutils, htmLutils, pageWordsParser);
         }
     }
 
-    private static void processCorrectUrl(String url) throws IOException {
+    /**
+     * Start parse procedure after check page for HTML content.
+     *
+     * @param url
+     * @param htmLutils
+     * @param pageWordsParser
+     * @throws IOException
+     */
+    private static void processCorrectUrl(String url, HTMLutils htmLutils, PageWordsParser pageWordsParser) throws IOException {
         System.out.println("URL CORRECT");
         System.out.println("REPORT for: " + url);
 
@@ -61,7 +69,15 @@ public class RunApp {
         }
     }
 
-    private static void readUrlFromConsole() throws IOException {
+    /**
+     * Read URL from console if entered in CMD parameter not valid.
+     *
+     * @param urLutils
+     * @param htmLutils
+     * @param pageWordsParser
+     * @throws IOException
+     */
+    private static void readUrlFromConsole(URLutils urLutils, HTMLutils htmLutils, PageWordsParser pageWordsParser) throws IOException {
 
         while (true) {
             try {
@@ -73,7 +89,7 @@ public class RunApp {
                     throw new MalformedURLException("Incorrect URL. Try again.");
 
                 } else {
-                    processCorrectUrl(url);
+                    processCorrectUrl(url, htmLutils, pageWordsParser);
                     break;
                 }
             } catch (MalformedURLException ex) {
@@ -82,6 +98,9 @@ public class RunApp {
         }
     }
 
+    /**
+     * Help info.
+     */
     private static void descriptor() {
         System.out.println("\nPlease use URL without spaces and wrong characters. \nExample: https://www.google.com.ua" +
                 "\nOr absolute path to FILE: \nExample: file://C:/Users/Jack/TestPage.html\n");

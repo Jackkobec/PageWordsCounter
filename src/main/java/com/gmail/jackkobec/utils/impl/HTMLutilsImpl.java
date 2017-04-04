@@ -24,6 +24,7 @@ public class HTMLutilsImpl implements HTMLutils {
         String stringLine = null;
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader bufferedReader = null;
+
         //url.substring(0, 4) - protocol place in the url
         if (url.substring(0, 4).equalsIgnoreCase("file")) {
             //substring(7) - path place without protocol and special symbols

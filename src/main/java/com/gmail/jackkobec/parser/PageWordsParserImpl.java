@@ -44,7 +44,7 @@ public class PageWordsParserImpl implements PageWordsParser {
             }
         }
 
-        System.out.println("\n Parsed " + allWords.size() + " words.");
+        System.out.println("\nParsed " + allWords.size() + " words.");
         return sortWords(allWords.get(0).equalsIgnoreCase("html")
                 ? allWords.subList(1, allWords.size())
                 : allWords);
@@ -147,13 +147,8 @@ public class PageWordsParserImpl implements PageWordsParser {
      */
     private String someTagsContentKiller(String string) {
 
-        string = string.replaceAll(DELETE_STYLE_TAG_PATTERN, " ");
-
-        string = string.replaceAll(DELETE_SCRIPT_TAG_PATTERN, " ");
-
-        string = string.replaceAll(DELETE_IMG_TAG_PATTERN, " ");
-
-        string = string.replaceAll(DELETE_OBJECT_TAG_PATTERN, " ");
+        string = string.replaceAll(DELETE_STYLE_TAG_PATTERN, " ").replaceAll(DELETE_SCRIPT_TAG_PATTERN, " ")
+        .replaceAll(DELETE_IMG_TAG_PATTERN, " ").replaceAll(DELETE_OBJECT_TAG_PATTERN, " ");
 
         return string;
     }
