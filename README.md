@@ -1,4 +1,4 @@
-# HelloWorldCMD
+# PageWordsCounter
 
 ## How to run: 
 ### java -jar PageWordsCounter.jar url
