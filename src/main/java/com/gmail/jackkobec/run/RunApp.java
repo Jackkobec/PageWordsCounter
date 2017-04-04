@@ -27,12 +27,8 @@ public class RunApp {
         descriptor();
 
         try {
+
             String url = args[0];
-//            file://TestPage.html
-//            http://www.cyberforum.ru
-//            file://C:/Users/Jack/IdeaProjects/PageWordsCounter/src/main/resources/TestPage.html
-//            file://C:/Users/Jack/IdeaProjects/PageWordsCounter/src/main/resources/FailPage.txt
-//            String url = "test";
             //check URL entered as CMD parameter
             if (!urLutils.checkUrl(url)) {
                 throw new MalformedURLException("Incorrect URL. Try again.");
@@ -43,7 +39,6 @@ public class RunApp {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-
             readUrlFromConsole(urLutils, htmLutils, pageWordsParser);
         }
     }
