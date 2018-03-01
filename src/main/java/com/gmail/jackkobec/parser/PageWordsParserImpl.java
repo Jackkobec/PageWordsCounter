@@ -28,7 +28,7 @@ public class PageWordsParserImpl implements PageWordsParser {
     @Override
     public List<String> splitAndCleanString(String string) {
 
-        ArrayList<String> allWords = new ArrayList<>();
+        final ArrayList<String> allWords = new ArrayList<>();
 
         string = someTagsContentKiller(string);
         string = htmlTagKiller(string);
@@ -57,10 +57,10 @@ public class PageWordsParserImpl implements PageWordsParser {
      * @return
      */
     @Override
-    public Map<String, Integer> countOfTheRepeatedWords(List<String> listOfAllWords) {
+    public Map<String, Integer> countOfTheRepeatedWords(final List<String> listOfAllWords) {
 
-        Set<String> words = new LinkedHashSet<>();//set for add any word and check is it unique
-        Set<String> uniqueRepeatedWords = new LinkedHashSet<>();//set for save unique repeated words
+        final Set<String> words = new LinkedHashSet<>();//set for add any word and check is it unique
+        final Set<String> uniqueRepeatedWords = new LinkedHashSet<>();//set for save unique repeated words
         int count = 0;
 
 //        System.out.println("listOfAllWords: " + listOfAllWords);
@@ -89,9 +89,9 @@ public class PageWordsParserImpl implements PageWordsParser {
      * @return
      */
     @Override
-    public Map<String, Integer> countRepeatsForEachWordFromList(List<String> listOfAllWords, Set<String> uniqueRepeatedWords) {
+    public Map<String, Integer> countRepeatsForEachWordFromList(final List<String> listOfAllWords, final Set<String> uniqueRepeatedWords) {
 
-        Map<String, Integer> wordsWithCountMap = new LinkedHashMap<>();
+        final Map<String, Integer> wordsWithCountMap = new LinkedHashMap<>();
 
 //        for (String key : uniqueRepeatedWords) {
 //            wordsWithCountMap.put(key, (int) listOfAllWords.stream().filter(el -> el.equals(key)).count());
@@ -123,7 +123,7 @@ public class PageWordsParserImpl implements PageWordsParser {
      * @param word
      * @return
      */
-    private boolean checkOnlyLetters(String word) {
+    private boolean checkOnlyLetters(final String word) {
 
         return Pattern.compile(ONLY_LETTERS_PATTERN).matcher(word).matches();
     }
@@ -134,7 +134,7 @@ public class PageWordsParserImpl implements PageWordsParser {
      * @param string
      * @return
      */
-    private String htmlTagKiller(String string) {
+    private String htmlTagKiller(final String string) {
 
         return string.replaceAll(DELETE_TAGS_PATTERN, " ");
     }
@@ -145,11 +145,9 @@ public class PageWordsParserImpl implements PageWordsParser {
      * @param string
      * @return
      */
-    private String someTagsContentKiller(String string) {
+    private String someTagsContentKiller(final String string) {
 
-        string = string.replaceAll(DELETE_STYLE_TAG_PATTERN, " ").replaceAll(DELETE_SCRIPT_TAG_PATTERN, " ")
-        .replaceAll(DELETE_IMG_TAG_PATTERN, " ").replaceAll(DELETE_OBJECT_TAG_PATTERN, " ");
-
-        return string;
+        return string.replaceAll(DELETE_STYLE_TAG_PATTERN, " ").replaceAll(DELETE_SCRIPT_TAG_PATTERN, " ")
+                .replaceAll(DELETE_IMG_TAG_PATTERN, " ").replaceAll(DELETE_OBJECT_TAG_PATTERN, " ");
     }
 }

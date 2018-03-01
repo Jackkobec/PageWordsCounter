@@ -5,7 +5,7 @@ package com.gmail.jackkobec.exeptions;
  */
 public class HtmlException extends RuntimeException {
 
-    public HtmlException(String s) {
+    public HtmlException(final String s) {
         super(s);
     }
 }
